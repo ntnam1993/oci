@@ -1,0 +1,73 @@
+{% block valantic_oci_users_create_page %}
+    <sw-page class="valantic-oci-users-create">
+        <template slot="smart-bar-actions">
+            <sw-button-process
+                class="valantic-oci-users-create__save-action"
+                :is-loading="isLoading"
+                :disabled="isLoading"
+                :process-success="processSuccess"
+                variant="primary"
+                @process-finish="saveFinish"
+                @click.prevent="onSave"
+            >
+                {{ $tc('valantic-oci.createForm.buttonSave') }}
+            </sw-button-process>
+        </template>
+        <template slot="content">
+            <sw-card-view>
+                <sw-card v-if="ociUser" :isLoading="isLoading">
+                    <sw-checkbox-field
+                            v-model="ociUser.active"
+                            :label="$tc('valantic-oci.createForm.labelActive')"
+                    />
+                    <sw-text-field
+                        v-model="ociUser.name"
+                        required
+                        :label="$tc('valantic-oci.createForm.labelName')"
+                        :placeholder="$tc('valantic-oci.createForm.placeholderName')"
+                    />
+                    <sw-password-field
+                        v-if="newUser"
+                        v-model="ociUser.password"
+                        required
+                        :label="$tc('valantic-oci.createForm.labelPassword')"
+                        :placeholder="$tc('valantic-oci.createForm.placeholderPassword')"
+                    />
+                    <sw-password-field
+                        v-if="!newUser"
+                        v-model="ociUser.passwordNew"
+                        autocomplete="off"
+                        :label="$tc('valantic-oci.createForm.labelNewPassword')"
+                        :placeholder="$tc('valantic-oci.createForm.placeholderNewPassword')"
+                    />
+                    <sw-password-field
+                        v-model="ociUser.passwordConfirm"
+                        autocomplete="off"
+                        :label="$tc('sw-profile.index.labelNewPasswordConfirm')"
+                        :placeholder="$tc('valantic-oci.createForm.placeholderNewPasswordConfirm')"
+                    />
+                    <sw-entity-single-select
+                        v-model="ociUser.customerId"
+                        entity="customer"
+                        required
+                        :label="$tc('valantic-oci.createForm.labelCustomer')"
+                        :placeholder="$tc('valantic-oci.createForm.placeholderCustomer')"
+                    >
+                        <template #result-item="{ item, index }">
+                            <slot name="result-item" v-bind="{ item, index }">
+                                <li is="sw-select-result" v-bind="{ item, index }">
+                                    {{ item.firstName }} {{ item.lastName }} {% if item.company %}({{ item.company }}){% endif %}
+                                </li>
+                            </slot>
+                        </template>
+                        <template #selection-label-property="{ item, index }">
+                            <slot name="selection-label-property" v-bind="{ item, index }">
+                                {{ item.firstName }} {{ item.lastName }} {% if item.company %}({{ item.company }}){% endif %}
+                            </slot>
+                        </template>
+                    </sw-entity-single-select>
+                </sw-card>
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

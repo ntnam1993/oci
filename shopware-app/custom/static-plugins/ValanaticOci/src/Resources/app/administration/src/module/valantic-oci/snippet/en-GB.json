@@ -1,0 +1,27 @@
+{
+    "valantic-oci": {
+        "general": {
+            "mainMenuItemGeneral": "Valantic OCI",
+            "descriptionTextModule": "Manage the OCI integration here"
+        },
+        "list": {
+            "createButton": "New OCI user",
+            "labelCompany": "Company"
+        },
+        "createForm": {
+            "labelName": "Username",
+            "placeholderName": "Username",
+            "labelPassword": "Password",
+            "placeholderPassword": "Password",
+            "labelNewPassword": "New password",
+            "placeholderNewPassword": "Enter new password...",
+            "labelNewPasswordConfirm": "Confirm password",
+            "placeholderNewPasswordConfirm": "Re-enter new password...",
+            "labelCustomer": "Customer",
+            "placeholderCustomer": "Customer",
+            "labelActive": "Active",
+            "buttonSave": "Save",
+            "messageSaveError": "OCI user could not be saved."
+        }
+    }
+}

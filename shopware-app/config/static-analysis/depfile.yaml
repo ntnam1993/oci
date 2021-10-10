@@ -1,0 +1,30 @@
+paths:
+  - ../../custom/static-plugins/*
+exclude_files:
+  - '#.*tests.*#'
+layers:
+  - name: Communication
+    collectors:
+      - type: className
+        regex: .*Communication.*
+  - name: Business
+    collectors:
+      - type: className
+        regex: .*Business.*
+  - name: Persistence
+    collectors:
+      - type: className
+        regex: .*Persistence.*
+  - name: Shared
+    collectors:
+      - type: className
+        regex: .*Shared.*
+ruleset:
+  Communication:
+    - Business
+    - Shared
+  Business:
+    - Persistence
+    - Shared
+  Persistence:
+    - Shared

@@ -1,0 +1,11 @@
+enqueue:
+  rabbitmq:
+    transport:
+      dsn: "%env(RABBITMQ_DSN)%"
+    client: ~
+
+framework:
+  messenger:
+    transports:
+      default:
+        dsn: "enqueue://rabbitmq"

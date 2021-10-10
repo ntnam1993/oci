@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/page/account/addressbook/create.html.twig' %}
+
+{% set ociUserAttr = app.session.get('oci-user-attribute') %}
+
+{% block page_account_address_form_main %}
+    {% if ociUserAttr and 'UPDATE_PROFILE' not in ociUserAttr.allowedPermission %}
+        <template customer-data-view-only></template>
+    {% endif %}
+    {{ parent() }}
+{% endblock %}

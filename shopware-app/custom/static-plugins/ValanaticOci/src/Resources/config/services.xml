@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Valantic\Oci\Communication\Controller\OciController" public="true">
+            <argument type="service" id="Valantic\Oci\Business\OciFacade" />
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <service id="Valantic\Oci\Persistence\Entity\OciUser\OciUserDefinition">
+            <tag name="shopware.entity.definition" entity="oci_user" />
+        </service>
+
+        <service id="Valantic\Oci\Communication\Routing\OciRouteScope">
+            <tag name="shopware.route_scope"/>
+        </service>
+
+        <service id="Valantic\Oci\Communication\Authentication\OciAuthenticationListener">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Shopware\Core\Framework\Routing\RouteScopeRegistry"/>
+            <argument type="service" id="Valantic\Oci\Business\OciFacade"/>
+            <argument id="logger" type="service"/>
+        </service>
+
+        <service id="Valantic\Oci\Persistence\Repository\OciUserRepository">
+            <argument type="service" id="oci_user.repository"/>
+        </service>
+
+        <service id="Valantic\Oci\Business\Model\OciUser">
+            <argument type="service" id="Shopware\Core\Framework\Event\BusinessEventDispatcher"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextRestorer"/>
+            <argument type="service" id="Valantic\Oci\Persistence\Repository\OciUserRepository"/>
+            <argument id="logger" type="service"/>
+        </service>
+
+        <service id="Valantic\Oci\Business\Validator\OciUserValidator">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Valantic\Oci\Business\Model\OciUser"/>
+            <argument type="service" id="Shopware\Core\Framework\RateLimiter\RateLimiter"/>
+            <argument id="logger" type="service"/>
+        </service>
+
+        <service id="Valantic\Oci\Business\OciFacade">
+            <argument type="tagged" tag="app.oci_handler"/>
+            <argument type="service" id="Valantic\Oci\Business\Model\OciUser"/>
+            <argument type="service" id="Valantic\Oci\Business\Validator\OciUserValidator"/>
+        </service>
+
+        <service id="Valantic\Oci\Business\Handlers\DetailHandler">
+            <argument id="logger" type="service"/>
+            <argument id="Shopware\Storefront\Controller\ProductController" type="service"/>
+            <tag name="app.oci_handler"/>
+        </service>
+
+        <service id="Valantic\Oci\Business\Handlers\ValidateHandler">
+            <tag name="app.oci_handler"/>
+        </service>
+
+        <service id="Valantic\Oci\Communication\Routing\LogoutDecoration"
+                 decorates="Shopware\Core\Checkout\Customer\SalesChannel\LogoutRoute">
+            <argument type="service" id=".inner"/>
+            <argument type="service" id="request_stack"/>
+        </service>
+
+    </services>
+</container>

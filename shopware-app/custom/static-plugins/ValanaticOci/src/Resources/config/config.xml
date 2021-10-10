@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Configuration</title>
+        <title lang="de-DE">Konfiguration</title>
+
+        <input-field type="text">
+            <name>username</name>
+            <label>Username Variable</label>
+            <label lang="de-DE">Benutzername Variable</label>
+            <defaultValue>USERNAME</defaultValue>
+        </input-field>
+        <input-field type="text">
+            <name>password</name>
+            <label>Password Variable</label>
+            <label lang="de-DE">Passwort-Variable</label>
+            <defaultValue>PASSWORD</defaultValue>
+        </input-field>
+        <input-field type="text">
+            <name>returnUrl</name>
+            <label>Return Url Variable</label>
+            <label lang="de-DE">Rückgabe Url-Variable</label>
+            <defaultValue>HOOK_URL</defaultValue>
+        </input-field>
+        <input-field type="text">
+            <name>supplierNumber</name>
+            <label>Supplier Number in SAP</label>
+            <label lang="de-DE">Lieferantennummer in SAP</label>
+        </input-field>
+        <input-field type="text">
+            <name>shippingENumber</name>
+            <label>Shipping eNumber</label>
+            <label lang="de-DE">Versand eNummer</label>
+        </input-field>
+        <input-field type="text">
+            <name>shippingInternOrderNumber</name>
+            <label>Shipping Intern Order Number</label>
+            <label lang="de-DE">Versand Intern Bestellnummer</label>
+        </input-field>
+        <input-field type="text">
+            <name>shippingPackUnit</name>
+            <label>Shipping Pack Unit</label>
+            <label lang="de-DE">Versand Packstück</label>
+        </input-field>
+        <input-field type="text">
+            <name>group</name>
+            <label>Group</label>
+            <label lang="de-DE">Gruppe</label>
+        </input-field>
+    </card>
+</config>

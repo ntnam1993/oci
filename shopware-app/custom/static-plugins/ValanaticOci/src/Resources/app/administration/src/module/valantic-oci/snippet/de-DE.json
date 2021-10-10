@@ -1,0 +1,27 @@
+{
+    "valantic-oci": {
+        "general": {
+            "mainMenuItemGeneral": "Valantic OCI",
+            "descriptionTextModule": "Verwalten Sie hier die Einstellungen der OCI-Anbindung"
+        },
+        "list": {
+            "createButton": "Neuer OCI-Nutzer",
+            "labelCompany": "Firma"
+        },
+        "createForm": {
+            "labelName": "Benutzername",
+            "placeholderName": "Benutzername",
+            "labelPassword": "Passwort",
+            "placeholderPassword": "Passwort",
+            "labelNewPassword": "Neues passwort",
+            "placeholderNewPassword": "Neues Passwort eingeben...",
+            "labelNewPasswordConfirm": "Passwort bestätigen",
+            "placeholderNewPasswordConfirm": "Neues Passwort erneut eingeben...",
+            "labelCustomer": "Kunde",
+            "placeholderCustomer": "Kunde",
+            "labelActive": "Aktiv",
+            "buttonSave": "Speichern",
+            "messageSaveError": "OCI-Nutzer konnte nicht gespeichert werden."
+        }
+    }
+}
